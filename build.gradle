@@ -1,13 +1,20 @@
-group 'com.vatolinrp'
-version '0.0.1-SNAPSHOT'
+configure( subprojects ) { subproject ->
+  apply plugin: 'java-library'
+  repositories {
+    jcenter()
+  }
+}
 
-apply plugin: 'java'
+configure( [ project(':bitcoin-model'), project(':bitcoin-dao'), project(':bitcoin-rest') ] ) {
+  apply plugin: 'java'
 
-repositories {
-    mavenCentral()
+  tasks.withType( JavaCompile ) {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
 }
 
 task wrapper (type: Wrapper) {
-    gradleVersion = '4.3'
-    distributionType Wrapper.DistributionType.ALL
+  gradleVersion = '4.3'
+  distributionType Wrapper.DistributionType.ALL
 }

@@ -1,2 +1,4 @@
 rootProject.name = 'bitcoin-boot'
-
+include 'bitcoin-model'
+include 'bitcoin-dao'
+include 'bitcoin-rest'

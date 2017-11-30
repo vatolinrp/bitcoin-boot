@@ -1,0 +1,28 @@
+plugins {
+  id 'com.benjaminsproule.swagger' version '0.1.4'
+  id 'org.springframework.boot' version '1.5.9.RELEASE'
+}
+
+dependencies {
+  implementation project (':bitcoin-model')
+  implementation project (':bitcoin-dao')
+  implementation "io.swagger:swagger-annotations:${swaggerVersion}"
+  implementation "org.springframework.boot:spring-boot-starter-jersey:${springBootVersion}"
+  testImplementation "org.mockito:mockito-all:${mockitoVersion}"
+  testImplementation "org.springframework:spring-test:${springframeworkVersion}"
+  testImplementation "org.testng:testng:${testngVersion}"
+}
+
+swagger{
+  apiSource {
+    springmvc = false
+    locations = ['com.vatolinrp.bitcoin.service']
+    schemes = ['https']
+    host = 'vatolinrp.com:8080'
+    info {
+      title = 'Bitcoin Service'
+      version = 'v1'
+    }
+    swaggerDirectory = "$buildDir/swagger"
+  }
+}
