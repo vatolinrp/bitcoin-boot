@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-  implementation project (':bitcoin-model')
-  implementation project (':bitcoin-dao')
+  compile project (':bitcoin-model')
+  compile project (':bitcoin-dao')
+  compile "org.springframework.boot:spring-boot-starter-jersey"
   implementation "io.swagger:swagger-annotations:${swaggerVersion}"
-  implementation "org.springframework.boot:spring-boot-starter-jersey:${springBootVersion}"
   testImplementation "org.mockito:mockito-all:${mockitoVersion}"
   testImplementation "org.springframework:spring-test:${springframeworkVersion}"
   testImplementation "org.testng:testng:${testngVersion}"
