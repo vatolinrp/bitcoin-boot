@@ -1,11 +1,11 @@
-package com.vatolinrp.bitcoin.dao;
+package com.vatolinrp.bitcoin.dao.impl;
 
+import com.vatolinrp.bitcoin.dao.PriceDAO;
 import com.vatolinrp.bitcoin.model.CurrencyCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -15,11 +15,11 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component( "priceDAO" )
+@Repository
 @PropertySource( "classpath:conf/base.properties" )
-public class PriceDAOImpl implements PriceDAO
+public class DefaultPriceDAO implements PriceDAO
 {
-  private static final Logger logger = LoggerFactory.getLogger( PriceDAOImpl.class );
+  private static final Logger logger = LoggerFactory.getLogger( DefaultPriceDAO.class );
   private static final String LAST_PRICE_FIELD = "last";
 
   @Value("${bitcoin.price.get.request.url}")
@@ -27,7 +27,7 @@ public class PriceDAOImpl implements PriceDAO
 
   private RestTemplate restTemplate;
 
-  public PriceDAOImpl()
+  public DefaultPriceDAO()
   {
     restTemplate = new RestTemplate();
   }

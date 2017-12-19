@@ -1,6 +1,7 @@
 package com.vatolinrp.bitcoin.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vatolinrp.bitcoin.dao.impl.DefaultPriceDAO;
 import com.vatolinrp.bitcoin.model.CurrencyCodeEnum;
 import org.apache.commons.io.IOUtils;
 import org.mockito.InjectMocks;
@@ -19,12 +20,12 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PriceDAOImplTest
+public class DefaultPriceDAOTest
 {
   private static final String TEST_URL = "bitcoinPriceURL";
 
   @InjectMocks
-  private PriceDAOImpl priceDAO;
+  private DefaultPriceDAO priceDAO;
 
   @Mock
   private RestTemplate restTemplate;
