@@ -2,10 +2,13 @@ rootProject.name = 'bitcoin-boot'
 rootProject.buildFileName = 'build.gradle.kts'
 
 include ':bitcoin-model'
-project( ':bitcoin-model').buildFileName = 'build.gradle.kts'
+project( ':bitcoin-model' ).buildFileName = 'build.gradle.kts'
 
 include ':bitcoin-dao'
-project( ':bitcoin-dao').buildFileName = 'build.gradle.kts'
+project( ':bitcoin-dao' ).buildFileName = 'build.gradle.kts'
 
 include ':bitcoin-rest'
-project( ':bitcoin-rest').buildFileName = 'build.gradle.kts'
+project( ':bitcoin-rest' ).buildFileName = 'build.gradle.kts'
+
+include ':bitcoin-integration-tests'
+project( ':bitcoin-integration-tests' ).buildFileName = 'build.gradle.kts'
