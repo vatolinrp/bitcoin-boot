@@ -1,6 +1,5 @@
 package com.vatolinrp.bitcoin.model;
 
-public enum CurrencyCodeEnum
-{
+public enum CurrencyCodeEnum {
   USD, CNY, EUR
 }

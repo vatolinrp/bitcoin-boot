@@ -16,8 +16,7 @@ import java.util.Collections;
 
 @SpringBootApplication
 @ComponentScan( value = "com.vatolinrp.bitcoin" )
-public class RestService
-{
+public class RestService {
   private static final int port = 8081;
   private static final String basePath = "/*";
 
@@ -27,15 +26,13 @@ public class RestService
   @Autowired
   private BitcoinPriceService bitcoinPriceService;
 
-  public static void main( String[] args )
-  {
+  public static void main( String[] args ) {
     System.getProperties().put( "server.port", port );
     SpringApplication.run( RestService.class, args );
   }
 
   @Bean
-  public Server rsServer()
-  {
+  public Server rsServer() {
     JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
     endpoint.setBus( bus );
     endpoint.setServiceBeans( Collections.singletonList( bitcoinPriceService ) );
@@ -44,8 +41,7 @@ public class RestService
   }
 
   @Bean
-  public ServletRegistrationBean cxfServletRegistrationBean()
-  {
+  public ServletRegistrationBean cxfServletRegistrationBean() {
     return new ServletRegistrationBean( new CXFServlet(), basePath );
   }
 }

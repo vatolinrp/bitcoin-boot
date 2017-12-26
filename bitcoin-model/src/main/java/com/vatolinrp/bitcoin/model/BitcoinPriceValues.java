@@ -7,13 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ApiModel( value = "bitcoin price values", description = "bitcoin prices in different currencies" )
-public class BitcoinPriceValues
-{
+public class BitcoinPriceValues {
   @ApiModelProperty( "bitcoin prices, where key is a currency code" )
   private Map<String, Double> prices;
 
-  public Map<String, Double> getPrices()
-  {
+  public Map<String, Double> getPrices() {
     if( prices == null ) {
       prices = new HashMap<>();
     }

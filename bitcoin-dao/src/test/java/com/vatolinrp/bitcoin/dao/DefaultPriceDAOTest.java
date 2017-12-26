@@ -20,8 +20,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultPriceDAOTest
-{
+public class DefaultPriceDAOTest {
   private static final String TEST_URL = "bitcoinPriceURL";
 
   @InjectMocks
@@ -31,21 +30,18 @@ public class DefaultPriceDAOTest
   private RestTemplate restTemplate;
 
   @BeforeClass
-  private void setup()
-  {
+  private void setup() {
     MockitoAnnotations.initMocks( this );
     ReflectionTestUtils.setField( priceDAO, "bitcoinPriceURL", TEST_URL );
   }
 
   @AfterMethod
-  private void reset()
-  {
+  private void reset() {
     Mockito.reset( restTemplate );
   }
 
   @Test
-  public void getPricesSuccessfulFlow() throws Exception
-  {
+  public void getPricesSuccessfulFlow() throws Exception {
     final InputStream inputStream = this.getClass().getResourceAsStream( "/bitcoinPriceResponse.json" );
     final String externalResponse = IOUtils.toString( inputStream, "UTF-8" );
     final Map expectedMap = new ObjectMapper().readValue( externalResponse, Map.class );
@@ -63,8 +59,7 @@ public class DefaultPriceDAOTest
   }
 
   @Test
-  public void checkWhenExceptionFromRestTemplateCame() throws Exception
-  {
+  public void checkWhenExceptionFromRestTemplateCame() {
     Mockito.when( restTemplate.getForObject( TEST_URL, Map.class ) )
       .thenThrow( new RestClientException( "Could not get response from external system" ) );
     final Map<CurrencyCodeEnum, Double> bitcoinPriceMap = priceDAO.getPrice();
@@ -74,8 +69,7 @@ public class DefaultPriceDAOTest
   }
 
   @Test
-  public void checkWhenNullRestTemplateCame() throws Exception
-  {
+  public void checkWhenNullRestTemplateCame() {
     Mockito.when( restTemplate.getForObject( TEST_URL, Map.class ) ).thenReturn( null );
     final Map<CurrencyCodeEnum, Double> bitcoinPriceMap = priceDAO.getPrice();
     Assert.assertNotNull( bitcoinPriceMap );
@@ -84,8 +78,7 @@ public class DefaultPriceDAOTest
   }
 
   @Test
-  public void checkWhenClassCastExceptionOccurred() throws Exception
-  {
+  public void checkWhenClassCastExceptionOccurred() {
     final Map<String, String> notExpectedMap = new HashMap<>();
     notExpectedMap.put( CurrencyCodeEnum.USD.name(), "testValue" );
     Mockito.when( restTemplate.getForObject( TEST_URL, Map.class ) ).thenReturn( notExpectedMap );

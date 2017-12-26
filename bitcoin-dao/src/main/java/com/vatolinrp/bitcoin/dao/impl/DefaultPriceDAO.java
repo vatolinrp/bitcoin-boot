@@ -17,8 +17,7 @@ import java.util.Map;
 
 @Repository
 @PropertySource( "classpath:conf/base.properties" )
-public class DefaultPriceDAO implements PriceDAO
-{
+public class DefaultPriceDAO implements PriceDAO {
   private static final Logger logger = LoggerFactory.getLogger( DefaultPriceDAO.class );
   private static final String LAST_PRICE_FIELD = "last";
 
@@ -27,8 +26,7 @@ public class DefaultPriceDAO implements PriceDAO
 
   private RestTemplate restTemplate;
 
-  public DefaultPriceDAO()
-  {
+  public DefaultPriceDAO() {
     restTemplate = new RestTemplate();
   }
 
@@ -36,13 +34,11 @@ public class DefaultPriceDAO implements PriceDAO
    * {@inheritDoc}
    */
   @Override
-  public Map<CurrencyCodeEnum, Double> getPrice()
-  {
+  public Map<CurrencyCodeEnum, Double> getPrice() {
     return parseResponse( getResponseFromExternal() );
   }
 
-  private Map<CurrencyCodeEnum, Double> parseResponse( final Map responseMap )
-  {
+  private Map<CurrencyCodeEnum, Double> parseResponse( final Map responseMap ) {
     final Map<CurrencyCodeEnum, Double> resultMap = new EnumMap<>( CurrencyCodeEnum.class );
     if( responseMap == null ) {
       logger.error( "Cannot parse response because it is null" );
@@ -63,8 +59,7 @@ public class DefaultPriceDAO implements PriceDAO
     return resultMap;
   }
 
-  private Map getResponseFromExternal()
-  {
+  private Map getResponseFromExternal() {
     try {
       return restTemplate.getForObject( bitcoinPriceURL, Map.class );
     } catch ( final RestClientException e ) {

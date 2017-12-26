@@ -16,8 +16,7 @@ import org.testng.annotations.Test;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class BitcoinPriceServiceTest
-{
+public class BitcoinPriceServiceTest {
   @Mock
   private PriceDAO priceDAO;
 
@@ -25,20 +24,17 @@ public class BitcoinPriceServiceTest
   private BitcoinPriceService bitcoinPriceService;
 
   @BeforeClass
-  private void setup()
-  {
+  private void setup() {
     MockitoAnnotations.initMocks( this );
   }
 
   @AfterMethod
-  private void reset()
-  {
+  private void reset() {
     Mockito.reset( priceDAO );
   }
 
   @Test
-  public void getBitcoinPricesSuccessfully()
-  {
+  public void getBitcoinPricesSuccessfully() {
     final Map<CurrencyCodeEnum, Double> bitcoinPriceValuesMap = new EnumMap<>( CurrencyCodeEnum.class );
     bitcoinPriceValuesMap.put( CurrencyCodeEnum.USD, 1.1 );
     bitcoinPriceValuesMap.put( CurrencyCodeEnum.CNY, 2.2 );
@@ -53,8 +49,7 @@ public class BitcoinPriceServiceTest
   }
 
   @Test
-  public void getBitcoinPricesWhenEmptyMapReturned()
-  {
+  public void getBitcoinPricesWhenEmptyMapReturned() {
     final Map<CurrencyCodeEnum, Double> bitcoinPriceValuesMap = new EnumMap<>( CurrencyCodeEnum.class );
     Mockito.when( priceDAO.getPrice() ).thenReturn( bitcoinPriceValuesMap );
     final BitcoinPriceValues bitcoinPriceValues = bitcoinPriceService.getBitcoinPrices();
@@ -64,8 +59,7 @@ public class BitcoinPriceServiceTest
   }
 
   @Test
-  public void checkPing()
-  {
+  public void checkPing() {
     final Ping ping = bitcoinPriceService.ping();
     Assert.assertNotNull( ping );
     Assert.assertNotNull( ping.getStatus() );

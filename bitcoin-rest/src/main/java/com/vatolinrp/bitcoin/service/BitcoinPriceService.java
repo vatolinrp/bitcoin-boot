@@ -21,8 +21,7 @@ import java.util.Map;
 @Produces( MediaType.APPLICATION_JSON )
 @Path( "/" )
 @Api( value = "/" )
-public class BitcoinPriceService
-{
+public class BitcoinPriceService {
   @Autowired
   private PriceDAO priceDAO;
 
@@ -33,12 +32,10 @@ public class BitcoinPriceService
     @ApiResponse( code = 200, message = "Operation finished successfully", response = BitcoinPriceValues.class ),
     @ApiResponse( code = 500, message = "Internal server error" )
   } )
-  public BitcoinPriceValues getBitcoinPrices()
-  {
+  public BitcoinPriceValues getBitcoinPrices() {
     final BitcoinPriceValues bitcoinPriceValues = new BitcoinPriceValues();
     final Map<CurrencyCodeEnum, Double> bitcoinPriceMap = priceDAO.getPrice();
-    bitcoinPriceMap.entrySet()
-      .forEach( entry -> bitcoinPriceValues.getPrices().put( entry.getKey().name(), entry.getValue() ) );
+    bitcoinPriceMap.forEach( ( key, value ) -> bitcoinPriceValues.getPrices().put( key.name(), value ) );
     return bitcoinPriceValues;
   }
 
@@ -49,8 +46,7 @@ public class BitcoinPriceService
     @ApiResponse( code = 200, message = "Operation finished successfully", response = Ping.class ),
     @ApiResponse( code = 500, message = "Internal server error" )
   } )
-  public Ping ping()
-  {
+  public Ping ping() {
     final Ping ping = new Ping();
     ping.setStatus( "Active" );
     return ping;
