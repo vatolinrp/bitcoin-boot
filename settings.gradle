@@ -12,3 +12,7 @@ project( ':bitcoin-rest' ).buildFileName = 'build.gradle.kts'
 
 include ':bitcoin-integration-tests'
 project( ':bitcoin-integration-tests' ).buildFileName = 'build.gradle.kts'
+
+include ':bitcoin-functional-tests'
+project( ':bitcoin-functional-tests' ).buildFileName = 'build.gradle.kts'
+
