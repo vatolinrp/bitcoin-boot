@@ -1,0 +1,8 @@
+plugins {
+  id 'java-library'
+}
+
+dependencies {
+  implementation "com.fasterxml.jackson.core:jackson-databind:${fasterxmlVersion}"
+  implementation "io.swagger:swagger-annotations:${swaggerVersion}"
+}

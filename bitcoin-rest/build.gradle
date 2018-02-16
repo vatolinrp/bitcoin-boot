@@ -1,0 +1,15 @@
+plugins {
+  id 'java-library'
+  id 'org.springframework.boot' version '1.5.9.RELEASE'
+}
+
+dependencies {
+  compile project( ':bitcoin-model' )
+  compile project( ':bitcoin-dao' )
+  compile "org.apache.cxf:cxf-spring-boot-starter-jaxrs:${cxfSpringBoot}"
+  compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${fasterxmlVersion}"
+  implementation "io.swagger:swagger-annotations:${swaggerVersion}"
+  testImplementation "org.mockito:mockito-all:${mockitoVersion}"
+  testImplementation "org.springframework:spring-test:${springframeworkVersion}"
+  testImplementation "org.testng:testng:${testngVersion}"
+}

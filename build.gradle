@@ -1,0 +1,15 @@
+configure( subprojects ) { subproject ->
+  apply plugin: 'java'
+  repositories {
+    jcenter()
+  }
+  tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
+}
+
+task wrapper (type: Wrapper) {
+  gradleVersion = '4.5.1'
+  distributionType Wrapper.DistributionType.ALL
+}
