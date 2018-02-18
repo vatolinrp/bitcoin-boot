@@ -1,0 +1,13 @@
+plugins {
+  id 'no.nils.wsdl2java' version '0.10'
+}
+
+wsdl2java {
+  wsdlsToGenerate = [
+    [ '-p',
+      'com.vatolinrp.bitcoin.generated.service',
+      "$projectDir/src/main/resources/wsdl/BitcoinService.wsdl"
+    ]
+  ]
+  wsdlDir = file("$projectDir/src/main/resources/wsdl")
+}
