@@ -1,6 +1,7 @@
 plugins {
   id 'java-library'
   id 'org.springframework.boot' version '1.5.9.RELEASE'
+  id 'com.benjaminsproule.swagger' version '0.1.4'
 }
 
 dependencies {
@@ -12,4 +13,17 @@ dependencies {
   testImplementation "org.mockito:mockito-all:${mockitoVersion}"
   testImplementation "org.springframework:spring-test:${springframeworkVersion}"
   testImplementation "org.testng:testng:${testngVersion}"
+}
+swagger{
+  apiSource {
+    springmvc = false
+    locations = ['com.vatolinrp.bitcoin.service']
+    schemes = ['https']
+    host = 'vatolinrp.com:8080'
+    info {
+      title = 'Bitcoin Service'
+      version = 'v1'
+    }
+    swaggerDirectory = "$buildDir/swagger"
+  }
 }
